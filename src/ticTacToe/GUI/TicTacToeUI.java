@@ -1,6 +1,6 @@
 package ticTacToe.GUI;
 
-import ticTacToe.Player;
+import ticTacToe.GameInitializer;
 
 import javax.swing.*;
 import java.awt.*;
@@ -12,7 +12,8 @@ public class TicTacToeUI {
     GridUI[][] board = new GridUI[3][3]; //Contains buttons
 
     public TicTacToeUI(){
-        initializeBoard();
+        GameInitializer game = new GameInitializer();
+        initializeBoard(game);
         initializePanel();
         initializeFrame();
 
@@ -26,9 +27,9 @@ public class TicTacToeUI {
         frame.setVisible(true);
     }
 
-    private void initializeBoard(){
+    private void initializeBoard(GameInitializer game){
         for(int i = 0, j = 0; i < 3 && j < 3; i++){
-            board[j][i] = new GridUI();
+            board[j][i] = new GridUI(game);
 
             if(i == 2)
             {

@@ -1,5 +1,6 @@
 package ticTacToe.GUI;
 
+import ticTacToe.GameInitializer;
 import ticTacToe.Player;
 
 import javax.swing.*;
@@ -10,17 +11,18 @@ import java.awt.event.ActionListener;
 public class GridUI extends JButton{
     ImageIcon icon = null;
 
-    GridUI(){
-        initializeGridUI();
+    GridUI(GameInitializer game){
+        initializeGridUI(game);
     }
-    private void initializeGridUI(){
+
+    private void initializeGridUI(GameInitializer game){
         setBackground(Color.white);
 
-        addActionListener(new ActionListener()
-        {
+        addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent e)
             {
-                updateIcon('x');
+                updateIcon(game.referee.playingPlayer.getPlayerLetter());
+                game.referee.endTurn();
             }
         });
     }
@@ -29,6 +31,5 @@ public class GridUI extends JButton{
 
         this.icon = new ImageIcon(this.getClass().getResource(Path));
         setIcon(this.icon);
-        getIcon();
     }
 }
