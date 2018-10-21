@@ -1,5 +1,7 @@
 package ticTacToe.GUI;
 
+import ticTacToe.Player;
+
 import javax.swing.*;
 import java.awt.*;
 
