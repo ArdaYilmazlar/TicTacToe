@@ -1,18 +1,17 @@
 package ticTacToe;
 
 public class Player {
-    private char playerLetter;
+   // private String name;
+    private final char playerLetter;
+    //private int point;
 
     public Player(char letter){
-        setPlayerLetter(letter);
+        this.playerLetter = letter;
     }
 
     public char getPlayerLetter() {
         return playerLetter;
     }
 
-    private void setPlayerLetter(char playerLetter) {
-        this.playerLetter = playerLetter;
-    }
 
 }

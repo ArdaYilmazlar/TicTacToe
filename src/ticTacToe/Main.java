@@ -5,6 +5,7 @@ import ticTacToe.GUI.TicTacToeUI;
 
 public class Main {
     public static void main(String[] args) {
-        new TicTacToeUI();
+        GameReferee referee = new GameReferee();
+        new TicTacToeUI(referee);
     }
 }

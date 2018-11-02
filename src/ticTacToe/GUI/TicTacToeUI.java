@@ -1,6 +1,7 @@
 package ticTacToe.GUI;
 
-import ticTacToe.GameInitializer;
+import ticTacToe.Game;
+import ticTacToe.GameReferee;
 
 import javax.swing.*;
 import java.awt.*;
@@ -11,9 +12,8 @@ public class TicTacToeUI {
     JPanel panel = new JPanel();
     GridUI[][] board = new GridUI[3][3]; //Contains buttons
 
-    public TicTacToeUI(){
-        GameInitializer game = new GameInitializer();
-        initializeBoard(game);
+    public TicTacToeUI(GameReferee referee){
+        initializeBoard(referee);
         initializePanel();
         initializeFrame();
 
@@ -27,9 +27,9 @@ public class TicTacToeUI {
         frame.setVisible(true);
     }
 
-    private void initializeBoard(GameInitializer game){
+    private void initializeBoard(GameReferee referee){
         for(int i = 0, j = 0; i < 3 && j < 3; i++){
-            board[j][i] = new GridUI(game);
+            board[j][i] = new GridUI(referee);
 
             if(i == 2)
             {
@@ -46,7 +46,6 @@ public class TicTacToeUI {
         layout.setHgap(10);
         panel.setLayout(layout);
         panel.setBackground(Color.ORANGE);
-
 
         for(int i = 0, j = 0; i < 3 && j < 3; i++){
             panel.add(board[j][i]);
