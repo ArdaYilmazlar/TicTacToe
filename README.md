@@ -1,6 +1,6 @@
-## TicTacToe
+# TicTacToe
 
-# Version 0.5
+## Version 0.5
 -Listeners Implemented\
 -Much needed code improvements\
 -Comments added\
