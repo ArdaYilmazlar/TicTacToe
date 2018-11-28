@@ -2,7 +2,7 @@ package ticTacToe;
 
 import java.util.ArrayList;
 
-public class GameReferee implements ClickListener, WinSubject { //Listens to clicks, sends Win signal
+public class GameReferee implements GridClickListener, WinSubject { //Listens to clicks, sends Win signal
     private char[][] grids = new char[3][3]; //Char representation of the board
     private Player playingPlayer; //Current player, not really needed but for easier readability, basically turnHolder[i]
     private Player[] turnHolder = new Player[2]; //To alternate between players
@@ -61,7 +61,7 @@ public class GameReferee implements ClickListener, WinSubject { //Listens to cli
         return playingPlayer;
     }
 
-    public void clickUpdate(int x, int y) { //Works when a button is clicked
+    public void gridClickUpdate(int x, int y) { //Works when a button is clicked
         setGrid(x, y, playingPlayer.getPlayerLetter()); //Button sends x and y coordinates of itself, referee updates the grid accordingly
         System.out.print("Referee notified."); //Debugging
         notifyWinListeners(); //Sending response back to observer

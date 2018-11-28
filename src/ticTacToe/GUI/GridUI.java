@@ -7,7 +7,7 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.util.ArrayList;
 
-public class GridUI extends JButton implements ClickSubject, WinListener { //Fix this so it doesn't extend JButton!, Sends clicks to observers, waiting for win
+public class GridUI extends JButton implements GridClickSubject, WinListener { //Fix this so it doesn't extend JButton!, Sends clicks to observers, waiting for win
     ImageIcon icon = null; //No image at start, showing background
 
     static int totalGrids = 0; //Shared grid count between button objects, used to determine coordinates of the button
@@ -15,7 +15,7 @@ public class GridUI extends JButton implements ClickSubject, WinListener { //Fix
     private int gridCoordinatesY;
     private Player currentPlayer; //To hold currentPlayer that has been sent by referee through listeners
     private boolean gameEnded = false;
-    private ArrayList<ClickListener> clickListeners = new ArrayList<ClickListener>(); //To hold as much as listeners i want, not needed for now as only referee listens to clicks, added for flexibility
+    private ArrayList<GridClickListener> gridClickListeners = new ArrayList<GridClickListener>(); //To hold as much as listeners i want, not needed for now as only referee listens to clicks, added for flexibility
 
     GridUI(){
         initializeGridUI(); //Initializes how button looks and it's click action listener (Possibly a better way to implement this?)
@@ -31,7 +31,7 @@ public class GridUI extends JButton implements ClickSubject, WinListener { //Fix
             public void actionPerformed(ActionEvent e)
             {
                 if(icon == null){ //To see if the tile has been set already
-                    notifyClickListeners(); //ey my listeners i got clicked
+                    notifyClickListeners();
                     updateIcon(Character.toString(currentPlayer.getPlayerLetter())); //Updates icon accordingly to currentPlayer so it shows the image representation of the letter
                     System.out.printf("X = %d, Y = %d \n", gridCoordinatesX, gridCoordinatesY); //Debug
                     if(gameEnded){ //No score system for now, so it just exits
@@ -51,17 +51,17 @@ public class GridUI extends JButton implements ClickSubject, WinListener { //Fix
         setIcon(this.icon); //Jbutton setIcon
     }
 
-    public void registerClickListener(ClickListener clickListener) {
-        clickListeners.add(clickListener);
+    public void registerClickListener(GridClickListener gridClickListener) {
+        gridClickListeners.add(gridClickListener);
     }
 
-    public void removeClickListener(ClickListener clickListener) {
-        clickListeners.remove(clickListeners.indexOf(clickListener));
+    public void removeClickListener(GridClickListener gridClickListener) {
+        gridClickListeners.remove(gridClickListeners.indexOf(gridClickListener));
     }
 
     public void notifyClickListeners() {
-        for(ClickListener obs : clickListeners){ //Enhanced for loop to access every listener
-            obs.clickUpdate(gridCoordinatesX, gridCoordinatesY); //Sends coordinates of clicked button
+        for(GridClickListener obs : gridClickListeners){ //Enhanced for loop to access every listener
+            obs.gridClickUpdate(gridCoordinatesX, gridCoordinatesY); //Sends coordinates of clicked button
         }
     }
 
