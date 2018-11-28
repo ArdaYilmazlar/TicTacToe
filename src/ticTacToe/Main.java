@@ -9,7 +9,7 @@ TODO / FIXME Better winCheck methods, also those methods need to send info about
 TODO ^ Make the button backgrounds green if they cause the win (easy)
 TODO Players need to hold score and name (easy)
 TODO UI needs to display player attributes correctly (hard, might lead to complete rewrite of TicTacToeUI(GridLayOut might not support this))
-TODO Add a main menu and options menu inside that (hard)
+TODO Create Options Panel (Medium)
 TODO Pressing esc should bring up a menu (easy / medium, code might get confusing)
 TODO Add music just to see if i can (???)
 TODO Online play (%99 will never implement, might comeback to this project for this in a year)

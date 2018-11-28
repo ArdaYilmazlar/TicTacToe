@@ -1,8 +1,5 @@
 # TicTacToe
 
-## Version 0.5
--Listeners Implemented\
--Much needed code improvements\
--Comments added\
--Slightly upgraded pictures
+## Version 0.6
+-Main Menu Implemented
 
