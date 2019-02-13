@@ -8,7 +8,7 @@ import java.awt.event.ActionListener;
 public class MainMenuUI implements MenuButtonClickListener{
 
     private JFrame frame = new JFrame("TicTacToe - Arda Yılmazlar");
-    private TicTacToeUI ticTacToe = new TicTacToeUI(); //Might not need a reference to TicTacToeUI, check back later
+    private TicTacToePanel ticTacToe = new TicTacToePanel(); //Might not need a reference to TicTacToePanel, check back later
     private JPanel panelMenu = new JPanel(); //Main menu which holds TicTacToe and Options buttons
     private JPanel panelTicTacToe = ticTacToe.getPanel();
     private JPanel panelContainer = new JPanel(); //Used to swap panels with cardLayout
@@ -33,7 +33,7 @@ public class MainMenuUI implements MenuButtonClickListener{
     }
 
     private void initializeFrame(){
-        frame.setSize(500, 500); //500 x 500 window
+        frame.setSize(500,525); //Doesn't actually create a 500x525 frame
         frame.setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE); //Pressing X button terminates the program
         frame.setResizable(false); //Not resizable
         frame.setLocationRelativeTo(null); //Centers the program to the screen
@@ -75,8 +75,7 @@ public class MainMenuUI implements MenuButtonClickListener{
         quitGameConstraints.gridy = 3;
 
         quitGame.addActionListener(new ActionListener() {
-            public void actionPerformed(ActionEvent e) {
-                System.exit(1);
+            public void actionPerformed(ActionEvent e) { System.exit(1);
             }
         });
     }
@@ -111,7 +110,7 @@ public class MainMenuUI implements MenuButtonClickListener{
         cardLayout.show(panelContainer, JFrameAlias);
     }
 
-    public TicTacToeUI getTicTacToe() {
+    public TicTacToePanel getTicTacToe() {
         return ticTacToe;
     }
 }
