@@ -1,4 +1,4 @@
 # TicTacToe
 
-## Version 0.6
--Main Menu Implemented
+## Version 0.7
+-Score system and game loop implemented
