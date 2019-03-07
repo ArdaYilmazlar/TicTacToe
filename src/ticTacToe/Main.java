@@ -1,6 +1,6 @@
 package ticTacToe;
 
-import ticTacToe.GUI.MainMenuUI;
+import ticTacToe.GUI.MainMenuPanel;
 
 /*
 TODO Implement AI (hard)
@@ -13,19 +13,20 @@ public class Main {
     public static void main(String[] args) {
         GameReferee referee = new GameReferee(); //Creates a gameReferee to govern the game rules
 
-        MainMenuUI menu = new MainMenuUI();
+        MainMenuPanel menu = new MainMenuPanel();
         initializeListeners(menu, referee);
     }
 
-    private static void initializeListeners(MainMenuUI mainMenuUI, GameReferee referee){
+    private static void initializeListeners(MainMenuPanel mainMenuPanel, GameReferee referee){
         for(int i = 0; i < 3; i++){
             for(int j = 0; j < 3; j++){ //Accessing each button
-                mainMenuUI.getTicTacToe().getGrid(j, i).registerClickListener(referee); //Notifies the buttons that referee wants to listen to their click
-                referee.registerCurrentPlayerListener(mainMenuUI.getTicTacToe().getGrid(j, i)); //Notifies the referee that buttons wants to listen to currentPlayer
+                mainMenuPanel.getTicTacToe().getGrid(j, i).registerClickListener(referee); //Notifies the buttons that referee wants to listen to their click
+                referee.registerCurrentPlayerListener(mainMenuPanel.getTicTacToe().getGrid(j, i)); //Notifies the referee that buttons wants to listen to currentPlayer
             }
         }
-        referee.registerWinListener(mainMenuUI.getTicTacToe());
-        referee.registerScoreListener(mainMenuUI.getTicTacToe());
+        mainMenuPanel.getOptions().registerClickListener(referee);
+        referee.registerWinListener(mainMenuPanel.getTicTacToe());
+        referee.registerScoreListener(mainMenuPanel.getTicTacToe());
         referee.notifyScoreListeners();
     }
 }

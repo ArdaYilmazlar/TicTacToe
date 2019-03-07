@@ -1,8 +1,10 @@
 package ticTacToe;
 
+import ticTacToe.GUI.PlayerNameListener;
+
 import java.util.ArrayList;
 
-public class GameReferee implements GridClickListener, WinSubject, CurrentPlayerSubject, ScoreSubject { //Listens to clicks, sends Win signal
+public class GameReferee implements GridClickListener, WinSubject, CurrentPlayerSubject, ScoreSubject, PlayerNameListener { //Listens to clicks, sends Win signal
     private char[][] grids = new char[3][3]; //Char representation of the board
     private Player playingPlayer; //Current player, not really needed but for easier readability, basically turnHolder[i]
     private Player[] turnHolder = new Player[2]; //To alternate between players
@@ -86,6 +88,12 @@ public class GameReferee implements GridClickListener, WinSubject, CurrentPlayer
         notifyCurrentPlayerListeners(x, y);
         notifyWinListeners(); //Sending response back to observer
         endTurn(); //no action left, turn ends for the player
+    }
+
+    public void playerNameUpdate(String playerOneName, String playerTwoName){
+        turnHolder[0].setName(playerOneName);
+        turnHolder[1].setName(playerTwoName);
+        notifyScoreListeners();
     }
 
     public void registerWinListener(WinListener winListener) {

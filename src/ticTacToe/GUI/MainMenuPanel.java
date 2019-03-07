@@ -5,12 +5,14 @@ import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
-public class MainMenuUI implements MenuButtonClickListener{
+public class MainMenuPanel implements MenuButtonClickListener{
 
     private JFrame frame = new JFrame("TicTacToe - Arda Yılmazlar");
     private TicTacToePanel ticTacToe = new TicTacToePanel(); //Might not need a reference to TicTacToePanel, check back later
+    private OptionsPanel options = new OptionsPanel();
     private JPanel panelMenu = new JPanel(); //Main menu which holds TicTacToe and Options buttons
     private JPanel panelTicTacToe = ticTacToe.getPanel();
+    private JPanel panelOptions = options.getPanel();
     private JPanel panelContainer = new JPanel(); //Used to swap panels with cardLayout
     private CardLayout cardLayout = new CardLayout(); //To switch between panels
     private GridBagLayout gridBagLayout = new GridBagLayout();
@@ -19,17 +21,23 @@ public class MainMenuUI implements MenuButtonClickListener{
     private MenuButton optionsButton = new MenuButton("Options", "Options");
     private GridBagConstraints optionsButtonConstraints = new GridBagConstraints();
     private JButton quitGame = new JButton("Quit");
+    //private MenuButton backToMenu = new MenuButton("Main Menu", "MainMenu");
     private GridBagConstraints quitGameConstraints = new GridBagConstraints();
     private JLabel menuLabel;
     private GridBagConstraints menuLabelConstraints = new GridBagConstraints();
 
 
-    public MainMenuUI(){
+    public MainMenuPanel(){
         initializeButtons();
+        initializeMainMenuButtons();
         initializeMenuLabel();
         initializePanelMenu();
         initializePanelContainer();
         initializeFrame();
+    }
+
+    private void initializeMainMenuButtons(){
+        options.getMenuButton().registerClickListener(this);
     }
 
     private void initializeFrame(){
@@ -102,7 +110,12 @@ public class MainMenuUI implements MenuButtonClickListener{
         panelContainer.setLayout(cardLayout); //Since this container will be used to swap panels, cardLayout is used
         panelContainer.add(panelMenu, "MainMenu"); //Menus added, "Nicknames" for panels added
         panelContainer.add(panelTicTacToe, "TicTacToe");
+        panelContainer.add(panelOptions, "Options");
         cardLayout.show(panelContainer, "MainMenu"); //Initial panel to show when program is first launched
+    }
+
+    public OptionsPanel getOptions(){
+        return options;
     }
 
 
@@ -112,6 +125,10 @@ public class MainMenuUI implements MenuButtonClickListener{
 
     public TicTacToePanel getTicTacToe() {
         return ticTacToe;
+    }
+
+    public JPanel getPanelMenu(){
+        return panelMenu;
     }
 }
 

@@ -16,7 +16,7 @@ public class TicTacToePanel implements ScoreListener, WinListener {
     private JLabel player1Score;
     private JLabel player2Score;
     private JLabel roundCount;
-    GridUI[][] board = new GridUI[3][3]; //Contains buttons
+    GridButton[][] board = new GridButton[3][3]; //Contains buttons
 
 
     public TicTacToePanel(){ //Each part initialized in different methods for easier debugging
@@ -30,7 +30,6 @@ public class TicTacToePanel implements ScoreListener, WinListener {
             for (int j = 0; j < 3; j++) {
                 board[i][j].resetIcon();
             }
-
         }
     }
 
@@ -44,7 +43,7 @@ public class TicTacToePanel implements ScoreListener, WinListener {
 
         for(int j = 0; j < 3; j++){
             for(int i = 0; i < 3; i++){ //Fills array with buttons
-                board[j][i] = new GridUI();
+                board[j][i] = new GridButton();
                 board[j][i].setPreferredSize(new Dimension(135,135));
                 //board[j][i].setMaximumSize(new Dimension(150,150));
                // board[j][i].setMinimumSize(new Dimension(150,150));
@@ -85,16 +84,17 @@ public class TicTacToePanel implements ScoreListener, WinListener {
     }
 
     public void scoreUpdate(Player playerOne, Player playerTwo, int round){
+        System.out.printf("Score Update, Name 1: %s", playerOne.getName());
         this.player1Score.setText(String.format("%s : %d", playerOne.getName(), playerOne.getScore()));
         this.player2Score.setText(String.format("%s : %d", playerTwo.getName(), playerTwo.getScore()));
         this.roundCount.setText(String.format("Round : %d", round));
     }
 
-    public GridUI[][] getGrids(){
+    public GridButton[][] getGrids(){
         return board;
     }
 
-    public GridUI getGrid(int x, int y){
+    public GridButton getGrid(int x, int y){
         return board[x][y];
     }
 

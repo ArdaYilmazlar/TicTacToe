@@ -7,22 +7,22 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.util.ArrayList;
 
-public class GridUI extends JButton implements GridClickSubject, CurrentPlayerListener { //Fix this so it doesn't extend JButton!, Sends clicks to observers, waiting for win
-    ImageIcon icon = null; //No image at start, showing background
+public class GridButton extends JButton implements GridClickSubject, CurrentPlayerListener { //Fix this so it doesn't extend JButton!, Sends clicks to observers, waiting for win
+    private ImageIcon icon = null; //No image at start, showing background
 
-    static int totalGrids = 0; //Shared grid count between button objects, used to determine coordinates of the button
+    private static int totalGrids = 0; //Shared grid count between button objects, used to determine coordinates of the button
     private int gridCoordinatesX;
     private int gridCoordinatesY;
     private ArrayList<GridClickListener> gridClickListeners = new ArrayList<GridClickListener>(); //To hold as much as listeners i want, not needed for now as only referee listens to clicks, added for flexibility
 
-    GridUI(){
-        initializeGridUI(); //Initializes how button looks and it's click action listener (Possibly a better way to implement this?)
+    GridButton(){
+        initializeGridButton(); //Initializes how button looks and it's click action listener (Possibly a better way to implement this?)
         gridCoordinatesX = totalGrids % 3; //Those assume 0,0 coordinate is left-bottom
         gridCoordinatesY = 2 - totalGrids / 3;
         totalGrids++;
     }
 
-    private void initializeGridUI(){
+    private void initializeGridButton(){
         setBackground(Color.white); //White background for buttons
 
         addActionListener(new ActionListener() { //Listening for mouse click
@@ -37,14 +37,14 @@ public class GridUI extends JButton implements GridClickSubject, CurrentPlayerLi
             }
         );
     }
-    public void updateIcon(String icon){
+    private void updateIcon(String icon){
         String Path = String.format("\\images\\%s.png", icon); //Images are in a subfolder of GUI
 
-        this.icon = new ImageIcon(this.getClass().getResource(Path)); //gets location of GridUI, adds Path then creates a ImageIcon object with the picture
+        this.icon = new ImageIcon(this.getClass().getResource(Path)); //gets location of GridButton, adds Path then creates a ImageIcon object with the picture
         setIcon(this.icon); //JButton setIcon
     }
 
-    public void resetIcon(){
+    protected void resetIcon(){
         this.icon = null;
         setIcon(this.icon);
     }

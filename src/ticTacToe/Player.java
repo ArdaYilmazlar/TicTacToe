@@ -1,18 +1,17 @@
 package ticTacToe;
 
 public class Player {
-    static int playerCount = 1;
     private String name;
     private final char playerLetter;
-    private int score = 0; //Not implemented yet, To hold points and deciding who won the most rounds
+    private int score = 0;
 
-    public Player(char letter){
+    protected Player(char letter){
         this.playerLetter = letter;
-        name = String.format("Player%d", playerCount);
-        playerCount++;
+        name = Character.toString(Character.toUpperCase(letter));
+
     }
 
-    public void setName(String name){
+    protected void setName(String name){
         this.name = name;
     }
 
@@ -24,7 +23,7 @@ public class Player {
         return playerLetter;
     }
 
-    public void increaseScore(){
+    protected void increaseScore(){
         score++;
     }
 
