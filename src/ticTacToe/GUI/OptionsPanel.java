@@ -49,7 +49,10 @@ public class OptionsPanel implements PlayerNameSubject{
         playerTwoNameField.addActionListener(new ActionListener() { //Listening for enter
             public void actionPerformed(ActionEvent e)
             {
-                playerTwoName = playerTwoNameField.getText().substring(0, 10);
+                if(playerTwoNameField.getText().length() < 10)
+                    playerTwoName = playerTwoNameField.getText();
+                else
+                    playerTwoName = playerTwoNameField.getText().substring(0, 10);
                 notifyClickListeners();
                 System.out.print(playerTwoName);
             }
@@ -62,7 +65,10 @@ public class OptionsPanel implements PlayerNameSubject{
         playerOneNameField.addActionListener(new ActionListener() { //Listening for enter
             public void actionPerformed(ActionEvent e)
             {
-                playerOneName = playerOneNameField.getText().substring(0,10);
+                if(playerOneNameField.getText().length() < 10)
+                    playerOneName = playerOneNameField.getText();
+                else
+                    playerOneName = playerOneNameField.getText().substring(0,10);
                 notifyClickListeners();
             }
         });
